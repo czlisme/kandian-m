@@ -2,7 +2,7 @@ body {
   background-color: #f5f7f9;
 }
 .login-container .page-nav-bar {
-  background-color: #ee0a24;
+  background: linear-gradient(to right, #ff6034, #ee0a24);
 }
 .login-container .page-nav-bar van-nav-bar__content {
   height: 140px;
