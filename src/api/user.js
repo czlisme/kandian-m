@@ -22,4 +22,11 @@ const getUserInfo = data => {
     url: '/app/v1_0/user'
   })
 }
-export { login, sendSms, getUserInfo }
+// 获取用户频道列表
+const getUserChannels = data => {
+  return request({
+    method: 'GET',
+    url: '/app/v1_0/channels'
+  })
+}
+export { login, sendSms, getUserInfo, getUserChannels }

@@ -1,6 +1,6 @@
 <template>
   <div id="music-box">
-    <audio src="~@/assets/audio/1.mp3" id="myAudio" controls>1123</audio>
+    <!-- <audio src="~@/assets/audio/1.mp3" id="myAudio" controls>1123</audio> -->
     <div class="music-container">
       <div class="music-fengmian">
         <div class="music-pic">
@@ -13,7 +13,7 @@
           />
         </div>
       </div>
-      <div class="music-control">
+      <div class="music-control" :class="{'isshow':audioData.showList}">
         <div class="control-top">
           <div class="music-title"></div>
           <div class="control">
@@ -39,7 +39,11 @@
           </div>
         </div>
       </div>
-      <!-- <div class="music-list"></div>  -->
+      <div class="music-list-btn" @click="showMusicList">
+        <div class="icon">
+          >
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -64,12 +68,12 @@ export default {
         thumbVSlide: false, // 音量滑块滑动时标记
         error: '', // 报错内容
         playType: 1, // 播放类型：1-列表循环，2-随机播放，3-单曲循环
-        listShow: false // 播放列表是否展示
+        showList: false // 播放列表是否展示
       },
       song: {
         index: 0,
         cover: '',
-        src: '/src/assets/audio/1.mp3',
+        src: 'https://www.0dutv.com/plug/down/up2.php/212877015.mp3',
         name: '',
         singer: '',
         time: ''
@@ -78,21 +82,21 @@ export default {
         {
           id: 1,
           cover: '',
-          src: '@/assets/audio/2.mp3',
+          src: 'https://www.0dutv.com/plug/down/up2.php/109717925.mp3',
           name: '',
           singer: '',
           time: ''
         },
         {
-          id: 1,
+          id: 2,
           cover: '',
-          src: '@/assets/audio/2.mp3',
+          src: 'https://www.0dutv.com/plug/down/up2.php/109717925.mp3',
           name: '',
           singer: '',
           time: ''
         },
         {
-          id: 1,
+          id: 3,
           cover: '',
           src: '@/assets/audio/3.mp3',
           name: '',
@@ -100,9 +104,9 @@ export default {
           time: ''
         },
         {
-          id: 1,
+          id: 4,
           cover: '',
-          src: '@/assets/audio/4.mp3',
+          src: '/assets/audio/4.mp3',
           name: '',
           singer: '',
           time: ''
@@ -116,6 +120,8 @@ export default {
     }, // 获取数据
     musicInit () {}, // 音频初始化
     play () {
+      audio.src = this.song.src
+      console.log(audio)
       if (!this.audioData.playing) {
         audio.play()
         this.audioData.playing = true
@@ -132,17 +138,20 @@ export default {
       playIndex++
       this.song.src = this.songList[playIndex].src
     }, // 下一曲
-    showMusicLlist () {}, // 是否显示播放列表
+    showMusicList () {
+      console.log(1)
+      this.audioData.showList = true
+    }, // 是否显示播放列表
     choseSong () {}, // 列表选择播放歌曲
     slideVolume () {}, // 控制音量滑块
     slideProgress () {} // 控制进度条滑块
   },
   mounted () {
-    audio = document.getElementById('myAudio')
     // this.getData()
   },
   created () {
     // audio.play()
+    audio = document.createElement('audio')
   }
 }
 </script>
@@ -150,7 +159,7 @@ export default {
 <style lang="less" scoped>
 #music-box {
   .music-container {
-    border: 1px solid #770404;
+    // border: 1px solid #770404;
     border-radius: 20px;
     height: 140px;
     display: flex;
@@ -174,6 +183,7 @@ export default {
     }
     .music-control {
       width: 600px;
+      border: 1px solid #000;
       background-color: aqua;
       // border: 1px solid #000;
       display: flex;
@@ -225,6 +235,23 @@ export default {
           }
         }
       }
+    }
+    .isshow {
+      width: 0;
+      height: 0;
+      transition: .5s;
+      overflow: hidden;
+    }
+    .music-list-btn {
+      width:30px ;
+      height: 140px;
+      position: relative;
+      right: 0;
+      background-color: red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: -20px;
     }
   }
 }

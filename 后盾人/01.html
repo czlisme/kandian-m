@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div><h2>随机变色</h2></div>
+    <script > 
+    //构造函数 随机变色 
+        function Bgcolor (elem){
+            this.elem = elem
+            this.arrColor = ['#16e5ec', '#ec16e1', '#ee2d4e', '#1dd12c', '#e48842', '#126372']
+            this.run = function (){
+                setInterval(function(){
+                    let i = Math.floor(Math.random()*this.arrColor.length)
+                    this.elem.style.backgroundColor = this.arrColor[i]
+                }.bind(this),1000)
+            }
+        }
+        let huanfu = new Bgcolor(document.body)
+        let div = new Bgcolor(document.querySelector('div'))
+        huanfu.run()
+        div.run()
+    </script>
+</body>
+</html>
