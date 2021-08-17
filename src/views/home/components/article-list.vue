@@ -82,7 +82,7 @@ export default {
         this.refreshSuccessText = `刷新成功，更新了${results.length}条数据`
         this.$notify({
           message: this.refreshSuccessText,
-          background: '#7C4DFF',
+          background: '#2186af',
           duration: 500,
           color: '#fff'
         })
